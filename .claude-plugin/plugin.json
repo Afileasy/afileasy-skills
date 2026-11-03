@@ -1,0 +1,11 @@
+{
+  "name": "afileasy",
+  "description": "Skills for integrating stores, checkouts and payment gateways with Afileasy affiliate programs.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Afileasy",
+    "url": "https://afileasy.com"
+  },
+  "homepage": "https://afileasy.com",
+  "keywords": ["afileasy", "affiliates", "referral", "stripe", "asaas", "abacatepay", "zouti", "woocommerce", "shopify", "nuvemshop"]
+}

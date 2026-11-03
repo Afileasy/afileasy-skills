@@ -1,0 +1,15 @@
+{
+  "name": "afileasy",
+  "owner": {
+    "name": "Afileasy",
+    "url": "https://afileasy.com"
+  },
+  "plugins": [
+    {
+      "name": "afileasy",
+      "source": "./",
+      "description": "Connect your store or payment gateway to Afileasy and get affiliate sales, coupons and leads attributed.",
+      "version": "0.1.0"
+    }
+  ]
+}

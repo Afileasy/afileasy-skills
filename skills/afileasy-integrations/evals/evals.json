@@ -1,0 +1,90 @@
+{
+  "skill_name": "afileasy-integrations",
+  "evals": [
+    {
+      "id": 1,
+      "name": "nextjs-stripe-checkout",
+      "prompt": "acabei de criar conta no afileasy pra rodar um programa de afiliados do meu curso. o checkout é stripe (checkout session, código tá nesse projeto). integra pra mim? minha chave pública do afileasy é pk_7f3a9c21e5",
+      "expected_output": "Installs the Afileasy script in app/layout.tsx with data-afileasy=pk_7f3a9c21e5; reads window.Afileasy.getReferral() in BuyButton (browser) and sends it to /api/checkout; sets client_reference_id + metadata.event_id and customer_creation 'always' on the Session; tells the user to connect Stripe via OAuth in Settings → Integrations; answers in pt-BR.",
+      "files": ["evals/files/nextjs-stripe"],
+      "assertions": [
+        "Script tag with src cdn.afileasy.com and data-afileasy=\"pk_7f3a9c21e5\" added to the root layout",
+        "getReferral() is called only in client-side code, never in the API route",
+        "The Checkout Session sets client_reference_id from the value sent by the browser",
+        "The Checkout Session sets customer_creation: 'always' (payment mode)",
+        "Tells the user to connect Stripe in Afileasy via OAuth (Connect with Stripe) and that no webhook needs to be configured",
+        "Response is in Portuguese"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "php-asaas-externalreference-conflict",
+      "prompt": "Preciso que as vendas da minha lojinha (PHP + Asaas, Pix) sejam creditadas pros afiliados do Afileasy. O projeto está aqui. Pode fazer o que precisar no código e me dizer o que eu configuro nos painéis.",
+      "expected_output": "Adds the script (public key placeholder, asks the user to copy it from the dashboard) and a hidden data-afileasy-ref input to the form; in checkout.php sets externalReference to the posted Afileasy code and moves the order id out of externalReference, flagging the conflict; lists Asaas steps: API key, webhook URL + authentication token (not Generate token), v3, sequential, exact event list.",
+      "files": ["evals/files/php-asaas"],
+      "assertions": [
+        "Adds the Afileasy tracking script to index.html",
+        "Carries the code from the browser to checkout.php (hidden input with data-afileasy-ref or JS getReferral)",
+        "Sets externalReference to the Afileasy code instead of the order id, and explicitly mentions the conflict with the existing order id",
+        "Lists the Asaas webhook events including PAYMENT_RECEIVED, PAYMENT_CONFIRMED and PAYMENT_REFUNDED",
+        "Warns not to use Asaas's 'Generate token' button / to paste the token from Afileasy exactly",
+        "Does not ask the user to paste the Asaas API key or webhook token into the chat or code"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "zouti-direct-checkout-link",
+      "prompt": "Vendo meu infoproduto pela Zouti. Meus afiliados do Afileasy estão divulgando o link do checkout direto (pay.zouti.com.br/...) e nenhuma venda tá caindo pra eles. O que tá errado e como resolvo?",
+      "expected_output": "Explains that direct Zouti checkout links can't carry the affiliate (no script runs, no metadata in the webhook); affiliates must share the sales page with ?ref=; the sales page needs the core script + script-zouti add-on which stamps utm_term; keep utm_term free; only leads with the same email are attributed otherwise; also checks the webhook signing secret is saved (Pending vs Active).",
+      "files": [],
+      "assertions": [
+        "States that a direct link to the Zouti checkout does not attribute the sale by link",
+        "Tells affiliates to share the sales page (campaign site) instead of the checkout link",
+        "Gives both scripts: script.min.js with data-afileasy and script-zouti.min.js",
+        "Mentions utm_term as the carrier and to keep it free",
+        "Mentions the lead-by-email exception or the signing-secret/active status check"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "unsupported-hotmart",
+      "prompt": "quero usar o afileasy pros meus afiliados mas eu vendo tudo pela hotmart. como faço pra conectar? tem webhook ou api que eu possa usar?",
+      "expected_output": "Says plainly Hotmart is not supported and there is no generic webhook or merchant API to push sales; lists supported providers; suggests moving payment to a supported gateway if feasible; does not invent an integration.",
+      "files": [],
+      "assertions": [
+        "States that Hotmart is not supported",
+        "Does not invent a webhook URL, API endpoint or generic integration for Hotmart",
+        "Lists at least four supported providers (e.g. Stripe, Asaas, AbacatePay, Zouti, WooCommerce, Shopify, Nuvemshop)",
+        "Response is in Portuguese"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "woocommerce-connect",
+      "prompt": "how do I connect my WooCommerce store to Afileasy? do I need to add any code to my theme?",
+      "expected_output": "Plugin Afileasy for WooCommerce + Generate connection key (afl_) pasted under WooCommerce → Afileasy + Test connection; no code and no manual script; coupons sync automatically.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "sales-not-credited-troubleshooting",
+      "prompt": "Integrei o Afileasy com AbacatePay semana passada. O script tá no site, testei com ?ref= do afiliado e comprei, mas a venda não aparece pra ele. O webhook no AbacatePay mostra erro 400. Me ajuda?",
+      "expected_output": "Identifies 400 as signature/secret failure: webhook URL must include ?webhookSecret=… in full; re-copy URL from Afileasy integration page; then verify metadata.event_id UUID on the charge and test with fresh email.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "pagarme-coming-soon",
+      "prompt": "Meu checkout é Pagar.me. Dá pra ligar no Afileasy hoje?",
+      "expected_output": "Pagar.me shows as Coming soon and cannot be connected yet; suggests supported alternatives; no setup steps invented.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "shopify-setup",
+      "prompt": "Tenho uma loja Shopify (minhaloja.myshopify.com) e quero que tanto cupom quanto link de afiliado do Afileasy funcionem. Preciso colar algum script no theme.liquid?",
+      "expected_output": "No script in theme.liquid; connect via domain + OAuth; enable Afileasy Tracking app embed with the public key; coupons become discount codes automatically.",
+      "files": []
+    }
+  ]
+}
