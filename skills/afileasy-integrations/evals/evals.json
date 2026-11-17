@@ -32,20 +32,6 @@
       ]
     },
     {
-      "id": 3,
-      "name": "zouti-direct-checkout-link",
-      "prompt": "Vendo meu infoproduto pela Zouti. Meus afiliados do Afileasy estão divulgando o link do checkout direto (pay.zouti.com.br/...) e nenhuma venda tá caindo pra eles. O que tá errado e como resolvo?",
-      "expected_output": "Explains that direct Zouti checkout links can't carry the affiliate (no script runs, no metadata in the webhook); affiliates must share the sales page with ?ref=; the sales page needs the core script + script-zouti add-on which stamps utm_term; keep utm_term free; only leads with the same email are attributed otherwise; also checks the webhook signing secret is saved (Pending vs Active).",
-      "files": [],
-      "assertions": [
-        "States that a direct link to the Zouti checkout does not attribute the sale by link",
-        "Tells affiliates to share the sales page (campaign site) instead of the checkout link",
-        "Gives both scripts: script.min.js with data-afileasy and script-zouti.min.js",
-        "Mentions utm_term as the carrier and to keep it free",
-        "Mentions the lead-by-email exception or the signing-secret/active status check"
-      ]
-    },
-    {
       "id": 4,
       "name": "unsupported-hotmart",
       "prompt": "quero usar o afileasy pros meus afiliados mas eu vendo tudo pela hotmart. como faço pra conectar? tem webhook ou api que eu possa usar?",
@@ -54,7 +40,7 @@
       "assertions": [
         "States that Hotmart is not supported",
         "Does not invent a webhook URL, API endpoint or generic integration for Hotmart",
-        "Lists at least four supported providers (e.g. Stripe, Asaas, AbacatePay, Zouti, WooCommerce, Shopify, Nuvemshop)",
+        "Lists at least four supported providers (e.g. Stripe, Asaas, AbacatePay, WooCommerce, Shopify, Nuvemshop)",
         "Response is in Portuguese"
       ]
     },
@@ -74,9 +60,9 @@
     },
     {
       "id": 7,
-      "name": "pagarme-coming-soon",
+      "name": "pagarme-unsupported",
       "prompt": "Meu checkout é Pagar.me. Dá pra ligar no Afileasy hoje?",
-      "expected_output": "Pagar.me shows as Coming soon and cannot be connected yet; suggests supported alternatives; no setup steps invented.",
+      "expected_output": "Says plainly Pagar.me is not supported; suggests supported alternatives; no setup steps invented.",
       "files": []
     },
     {

@@ -19,7 +19,7 @@
 1. An affiliate shares `https://store.com/?ref=CODE`.
 2. The tracking script on `store.com` sends the click to Afileasy. Afileasy accepts it only if the page is on the campaign's website domain or a subdomain of it. It returns the Afileasy code, which the script stores in the `afileasy_ref` cookie. If the affiliate has a coupon, the script also stores it in `afileasy_coupon`.
 3. At checkout, the code reaches the order in one of two ways:
-   - the store plugin or app carries it there (WooCommerce, Shopify, Nuvemshop, Zouti scripts);
+   - the store plugin or app carries it there (WooCommerce, Shopify, Nuvemshop);
    - your code stamps it on the charge (Stripe, Asaas, AbacatePay).
 4. The provider sends a webhook when the payment is confirmed. Afileasy matches the buyer to a known customer by the provider's customer ID or email, then:
    - **New customer:** the **Afileasy code** on the charge decides (it must be a UUID from this organization). Without one, the affiliate's **coupon** decides. Without either, the payment isn't recorded: there's nobody to credit.
@@ -35,8 +35,8 @@
 ## Availability
 
 - **Global:** Stripe, WooCommerce, Shopify.
-- **Brazil only:** Asaas, AbacatePay, Zouti, Nuvemshop. Pagar.me is also Brazil-only and marked "Coming soon": it can't be connected yet.
-- **Not supported:** anything else, including Hotmart, Kiwify, Eduzz, Mercado Pago, PayPal, Paddle and Lemon Squeezy. There is no merchant API for pushing sales manually.
+- **Brazil only:** Asaas, AbacatePay, Nuvemshop.
+- **Not supported:** anything else, including Pagar.me, Zouti, Hotmart, Kiwify, Eduzz, Mercado Pago, PayPal, Paddle and Lemon Squeezy. There is no merchant API for pushing sales manually.
 
 ## Account
 

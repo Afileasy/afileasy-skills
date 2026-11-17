@@ -1,6 +1,6 @@
 # Tracking script
 
-Required for Stripe, Asaas, AbacatePay and Zouti. **Don't install it manually on WooCommerce, Shopify or Nuvemshop.** Their plugin or app already loads it, and a second copy causes duplicate clicks.
+Required for Stripe, Asaas and AbacatePay. **Don't install it manually on WooCommerce, Shopify or Nuvemshop.** Their plugin or app already loads it, and a second copy causes duplicate clicks.
 
 ## Install
 
@@ -14,14 +14,11 @@ Put it on **every page** of the campaign's website, in `<head>` or just before `
 - Keep the `src` exactly as given. It updates automatically. Don't download and self-host the file: self-hosted copies never get fixes and break API resolution.
 - Optional `data-api-url` overrides the API base. Leave it out unless Afileasy support tells the user otherwise.
 
-Add-ons load **after** the core script:
+The Stripe add-on loads **after** the core script:
 
 ```html
 <!-- Stripe Payment Links / Buy Buttons: stamps client_reference_id automatically -->
 <script src="https://cdn.afileasy.com/analytics/script-stripe.min.js"></script>
-
-<!-- Zouti: carries the affiliate to the Zouti checkout as utm_term -->
-<script src="https://cdn.afileasy.com/analytics/script-zouti.min.js"></script>
 ```
 
 ### Framework placement
@@ -92,6 +89,5 @@ declare global {
 The cookie doesn't cross to a different registrable domain. A subdomain of the campaign site is fine.
 
 If the checkout lives elsewhere:
-- **Zouti:** the Zouti add-on handles it.
 - **Stripe Payment Links:** the Stripe add-on handles it.
 - **Anything else:** pass the code yourself. Either add it to the link with `Afileasy.appendRef(url)`, or read it on the origin page and send it in the request that creates the charge.

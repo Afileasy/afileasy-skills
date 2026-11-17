@@ -4,7 +4,7 @@
 
 Run these in order. Each step proves the previous one worked. Use a private browser window and an email that has **never** bought before. A known customer is credited to their existing affiliate no matter what, which hides a broken setup.
 
-1. **The integration is active.** Afileasy → Settings → Integrations → provider shows *Connected* / *Active*. Zouti stays *Pending* until the signing secret is saved.
+1. **The integration is active.** Afileasy → Settings → Integrations → provider shows *Connected* / *Active*.
 2. **The campaign website URL is set** and matches the store's domain (Campaign → general settings).
 3. **The script loads.** On the landing page, `window.Afileasy` exists in the console, with a `version` set.
    - Skip this on WooCommerce, Shopify and Nuvemshop, where the plugin or app loads it.
@@ -16,7 +16,6 @@ Run these in order. Each step proves the previous one worked. Use a private brow
    - Stripe: `client_reference_id` / `metadata.event_id`
    - Asaas: *External reference*
    - AbacatePay: `metadata.event_id`
-   - Zouti: the checkout URL had `utm_term=<uuid>`
    - Shopify: order *Additional details* shows `afileasy_ref`
 6. **The webhook is delivered.** The provider's webhook log shows a 200 response from Afileasy.
 7. **The sale is attributed.** Afileasy shows the sale and the commission under the affiliate.
@@ -30,9 +29,8 @@ Run these in order. Each step proves the previous one worked. Use a private brow
 | `getReferral()` returns an **older** affiliate | First touch: the cookie from an earlier visit stays | `Afileasy.clear()` or a private window |
 | Code is `null` on the checkout page only | Checkout is on another domain, or the script isn't on the checkout page | Load the script there, or pass the code with `Afileasy.appendRef(url)` / your own request |
 | The provider shows an order number in the field, not a UUID | Code reads the wrong value or overwrites it | Use `getReferral()` (not `getReferralCode()`), and don't reuse the field for your own ID |
-| Webhook log shows **400** | Wrong secret or token | Asaas: token not pasted exactly (or "Generate token" used). AbacatePay: URL missing `?webhookSecret=…`. Zouti: secret not saved in Afileasy or outdated |
+| Webhook log shows **400** | Wrong secret or token | Asaas: token not pasted exactly (or "Generate token" used). AbacatePay: URL missing `?webhookSecret=…` |
 | Webhook log shows **404** | URL has the wrong integration token, or the integration was disconnected | Copy the URL again from the Afileasy integration page |
-| Zouti webhook got disabled | 10 rejected deliveries in a row (secret saved late) | Save the secret in Afileasy, re-enable the webhook in Zouti |
 | No deliveries at all | Webhook not created, wrong events selected, or saved disabled | Re-check the event list in the provider reference |
 | Stripe sale missing entirely | One-time charge without a Stripe Customer | `customer_creation: 'always'` on Checkout Sessions, or pass `customer` |
 | Sale arrives but goes to the wrong affiliate | The customer already belonged to that affiliate, or used another affiliate's coupon | Expected behavior (see `concepts.md`); test with a fresh email |
