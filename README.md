@@ -12,7 +12,7 @@ Skills que ensinam agents de código (Claude Code, Cursor, Codex e outros) a int
 - Registra leads quando você quiser.
 - Confere a atribuição e ajuda a descobrir por que uma venda não chegou ao afiliado.
 
-**Provedores suportados:** Stripe, Asaas, AbacatePay, Zouti, WooCommerce, Shopify e Nuvemshop. Pagar.me está em breve.
+**Provedores suportados:** Stripe, Asaas, AbacatePay, WooCommerce, Shopify e Nuvemshop.
 
 O agent não acessa o seu painel. Os passos de lá ficam com você, e as chaves e os segredos não passam pelo chat.
 
@@ -41,7 +41,7 @@ Depois, peça ao agent, por exemplo: *"integra o Afileasy no meu checkout do Str
 
 The `afileasy-integrations` skill teaches coding agents to connect a store, checkout or payment gateway to Afileasy. It detects your platform, explains the dashboard steps, installs the tracking script, stamps the affiliate code on charges, sets up lead capture and verifies attribution.
 
-Supported providers: Stripe, Asaas, AbacatePay, Zouti, WooCommerce, Shopify and Nuvemshop. Pagar.me is coming soon.
+Supported providers: Stripe, Asaas, AbacatePay, WooCommerce, Shopify and Nuvemshop.
 
 Install with `/plugin marketplace add Afileasy/afileasy-skills` and then `/plugin install afileasy@afileasy` in Claude Code, or with `npx skills add Afileasy/afileasy-skills`.
 

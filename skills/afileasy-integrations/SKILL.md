@@ -1,6 +1,6 @@
 ---
 name: afileasy-integrations
-description: Connect a store, checkout or payment gateway to Afileasy (affiliate/referral program platform) so affiliate sales, coupons and leads are tracked and commissioned. Use this whenever the user mentions Afileasy together with installing, integrating, connecting or troubleshooting — e.g. adding the Afileasy tracking script, stamping the affiliate/referral code on a Stripe, Asaas, AbacatePay or Zouti charge, connecting WooCommerce, Shopify or Nuvemshop, setting up an Afileasy webhook, capturing leads, or figuring out why a sale was not credited to an affiliate. Also use it when the user asks which platforms Afileasy supports or what they need to do in the Afileasy dashboard.
+description: Connect a store, checkout or payment gateway to Afileasy (affiliate/referral program platform) so affiliate sales, coupons and leads are tracked and commissioned. Use this whenever the user mentions Afileasy together with installing, integrating, connecting or troubleshooting — e.g. adding the Afileasy tracking script, stamping the affiliate/referral code on a Stripe, Asaas or AbacatePay charge, connecting WooCommerce, Shopify or Nuvemshop, setting up an Afileasy webhook, capturing leads, or figuring out why a sale was not credited to an affiliate. Also use it when the user asks which platforms Afileasy supports or what they need to do in the Afileasy dashboard.
 ---
 
 # Afileasy integrations
@@ -25,7 +25,6 @@ Detect it from the repo before asking:
 - `stripe` in package.json, composer.json, requirements or Gemfile, or `buy.stripe.com` links or `<stripe-buy-button>` → **Stripe**
 - calls to `api.asaas.com` / `/v3/payments`, or an Asaas SDK → **Asaas**
 - calls to `api.abacatepay.com` / `/v2/checkouts/create` / `/v2/transparents/create` → **AbacatePay**
-- links to `*.zouti.com.br` → **Zouti**
 - `wp-content/` with WooCommerce → **WooCommerce**
 - a Shopify theme (`layout/theme.liquid`, `sections/*.liquid`) or a `*.myshopify.com` store → **Shopify**
 - a Nuvemshop / Tiendanube store → **Nuvemshop**
@@ -39,19 +38,17 @@ If the repo doesn't settle it, ask one short question: where do your customers p
 | Stripe | OAuth (Stripe Connect) | ✓ | ✓ | ✓ | script + stamp the code on the Checkout Session / charge | global | `references/stripe.md` |
 | Asaas | API key + webhook (URL + token) | – | ✓ | ✓ | script + `externalReference` | Brazil | `references/asaas.md` |
 | AbacatePay | API key (v2) + webhook (URL with secret) | ✓ | ✓ | ✓ | script + `metadata.event_id` | Brazil | `references/abacatepay.md` |
-| Zouti | webhook URL + signing secret | – | ✓ | ✓ | two scripts on the sales page, no backend code | Brazil | `references/zouti.md` |
 | WooCommerce | plugin + connection key | ✓ | ✓ | ✓ | none | global | `references/woocommerce.md` |
 | Shopify | OAuth + theme app embed | ✓ | ✓ | ✓ | none (paste the public key in the app embed) | global | `references/shopify.md` |
 | Nuvemshop | OAuth app install | ✓ | lead only | ✓ | none | Brazil | `references/nuvemshop.md` |
 
-- **Pagar.me** shows as "Coming soon". It can't be connected yet.
-- **Not supported:** Hotmart, Kiwify, Eduzz, Mercado Pago, PayPal, Paddle, Lemon Squeezy, and any other provider not in the table.
+- **Not supported:** Pagar.me, Zouti, Hotmart, Kiwify, Eduzz, Mercado Pago, PayPal, Paddle, Lemon Squeezy, and any other provider not in the table.
   - Say so plainly.
   - If the user can take payment through a supported gateway instead, point that out.
   - Don't invent a "generic webhook" or "REST API" path. Afileasy has no merchant-facing API for posting sales.
 - **Brazil-only** providers appear only for organizations operating in Brazil.
 
-Read `references/concepts.md` first if the user is new to Afileasy or asks how attribution works. Read `references/tracking-script.md` for every provider that needs the script (Stripe, Asaas, AbacatePay, Zouti). Read `references/leads.md` when they want to reward or track sign-ups.
+Read `references/concepts.md` first if the user is new to Afileasy or asks how attribution works. Read `references/tracking-script.md` for every provider that needs the script (Stripe, Asaas, AbacatePay). Read `references/leads.md` when they want to reward or track sign-ups.
 
 ### 3. Dashboard steps (the user does these)
 Give the numbered steps from the provider reference. Wait for the user to finish. Then carry on with the code.
